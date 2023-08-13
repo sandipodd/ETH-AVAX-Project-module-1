@@ -43,4 +43,4 @@ If you encounter any issues or need assistance, feel free to reach out to the co
 
 ## License
 
-This project is licensed under the MIT ().
+This project is licensed under the MIT (https://github.com/sandipodd/ETH-AVAX-Project-module-1/blob/main/LICENSE).
