@@ -1,5 +1,4 @@
 # ETH-AVAX-Project-module-1
-# Project Title
 
 A simple Ethereum smart contract for managing a fund's balance.
 
