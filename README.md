@@ -1,43 +1,35 @@
-# ETH-AVAX-Project-module-1
+# FundManager Smart Contract
 
-A simple Ethereum smart contract for managing a fund's balance.
+The FundManager contract demonstrates basic functionalities for managing a fund on the Ethereum blockchain. It includes methods for contributing, withdrawing, and performing mathematical division.
 
 ## Description
 
-This project consists of a Solidity smart contract named `FundManager`. The contract provides functionalities to manage a fund's balance, allowing users to contribute funds, withdraw funds, and set the fund's balance while enforcing constraints to ensure proper fund management.
+The FundManager contract allows users to contribute funds to a shared pool, withdraw from it while ensuring there are sufficient funds, and perform division calculations. The contract showcases various aspects of smart contract development, including input validation and mathematical operations.
 
-## Getting Started
+## Functions
 
-### Installing
+### `contribute(uint _amount)`
 
-To use the smart contract, you need an Ethereum development environment and a tool to deploy smart contracts, such as Remix or Truffle.
+Contribute a specified amount to the fund. Requires the `_amount` to be greater than 0.
 
-* Install [Remix](https://remix.ethereum.org/) or [Truffle](https://www.trufflesuite.com/truffle) on your local machine.
+### `withdraw(uint _amount)`
 
-### Executing program
+Withdraw a specified amount from the fund. Requires the `_amount` to be greater than 0 and not exceeding the available fund balance.
 
-Follow these steps to deploy and interact with the smart contract:
+### `divide(uint _numerator, uint _denominator)`
 
-1. Open Remix or Truffle on your local machine.
-2. Create a new Solidity file and paste the content of the `FundManager.sol` contract into it.
-3. Compile the contract to make sure there are no syntax errors.
-4. Deploy the contract to an Ethereum network of your choice (e.g., Remix's JavaScript VM, Ropsten, etc.).
-5. Once deployed, you can interact with the contract using its functions.
+Perform a division operation and return the result. Requires `_numerator` to be greater than or equal to `_denominator`.
 
-**Contributing Funds:**
-Call the `contribute` function with the desired contribution amount. Make sure the amount is greater than 0.
+## Example Usage
 
-**Withdrawing Funds:**
-Call the `withdraw` function with the amount you want to withdraw. Ensure the amount is greater than 0 and doesn't exceed the available fund balance.
+1. Deploy the contract on a local or test Ethereum network.
+2. Contribute funds using the `contribute` function.
+3. Withdraw funds using the `withdraw` function.
+4. Perform division calculations using the `divide` function.
 
-**Setting Fund Balance:**
-Use the `setFundBalance` function to set the fund's balance to a specified value. This function will revert if you attempt to set a negative balance.
+## Contributors
 
-## Help
-
-If you encounter any issues or need assistance, feel free to reach out to the contributors.
-
-## Authors
+This project is maintained by the following contributors:
 
 ### Sandip Thakur
 
