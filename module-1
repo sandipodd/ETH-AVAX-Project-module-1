@@ -1,27 +1,48 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract FundManager {
-    uint public fundBalance;
+contract RequireAssertRevertExample {
+    address public owner;
+    uint public value;
 
-    // Function to contribute funds to the fund using require()
-    function contribute(uint _amount) public payable {
-        require(_amount > 0, "Please contribute an amount greater than 0");
-        fundBalance += _amount; // Increase the fund balance by the contribution amount
+    constructor() {
+        owner = msg.sender;
     }
 
-    // Function to withdraw funds from the fund using assert()
-    function withdraw(uint _amount) public payable {
-        require(_amount > 0, "Please withdraw an amount greater than 0");
-        assert(_amount <= fundBalance); // Check if the withdrawal amount is not greater than the fund balance
-        fundBalance -= _amount; // Decrease the fund balance by the withdrawal amount
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this function");
+        _;
     }
 
-    // Function to set the fund balance and use revert() if the input value is negative
-    function setFundBalance(uint _balance) public payable {
-        if (_balance < 0) {
-            revert("Cannot set a negative fund balance"); // Revert the transaction if the input value is negative
+    // Function to update the value, only accessible by the contract owner
+    function updateValue(uint newValue) public onlyOwner {
+        value = newValue;
+    }
+
+    // Function to demonstrate the usage of assert()
+    function assertExample(uint a, uint b) public pure returns (uint) {
+        uint result = a + b;
+        assert(result >= a && result >= b); // Ensuring no overflow occurs
+        return result;
+    }
+
+    // Function to demonstrate the usage of revert()
+    function divide(uint _numerator, uint _denominator) public pure returns (uint) {
+        require(_denominator != 0, "Denominator cannot be zero");
+        require(_numerator >= _denominator, "Numerator must be greater than or equal to the denominator");
+        return _numerator / _denominator;
+    }
+    
+    // Function to demonstrate custom error message with revert
+    function divideWithCustomError(uint _numerator, uint _denominator) public pure returns (uint) {
+        require(_denominator != 0, "Denominator cannot be zero");
+        require(_numerator >= _denominator, "Numerator must be greater than or equal to the denominator");
+        
+        if (_numerator < _denominator) {
+            revert("Numerator must be greater than the denominator");
         }
-        fundBalance = _balance; // Set the fund balance to the input value
+        
+        return _numerator / _denominator;
     }
 }
+
